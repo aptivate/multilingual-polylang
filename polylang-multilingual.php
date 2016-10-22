@@ -17,11 +17,6 @@ class PolylangMultilingual {
 				pll_languages_list(),
 				array( self::$current_language )
 			);
-
-			add_filter(
-				'pre_get_posts',
-				array( 'PolylangMultilingual', 'add_post_filters' )
-			);
 		}
 	}
 
@@ -29,20 +24,21 @@ class PolylangMultilingual {
 		return function_exists( 'pll_languages_list' );
 	}
 
-	public static function add_post_filters( $query ) {
+	public static function get_query() {
 		/* https://wordpress.org/support/topic/show-posts-from-other-languages/?replies=18
 		 * by way of
 		 * http://wordpress.syllogic.in/2014/08/going-multi-lingual-with-polylang/
 		 */
-		if ( $query->is_main_query() && is_home() ) {
-			$duplicated_post_ids = self::get_duplicated_posts();
+		$duplicated_post_ids = self::get_duplicated_posts();
 
-			$all_languages = '';
-			$query->set( 'lang' , $all_languages );
-			$query->set( 'post__not_in', $duplicated_post_ids );
-		}
+		$all_languages = '';
 
-		return $query;
+		$args = array(
+			'lang' => $all_languages,
+			'post__not_in' => $duplicated_post_ids,
+		);
+
+		return new WP_Query( $args );
 	}
 
 	private static function get_duplicated_posts() {
