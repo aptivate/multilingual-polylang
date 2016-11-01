@@ -24,7 +24,7 @@ class PolylangMultilingual {
 		return function_exists( 'pll_languages_list' );
 	}
 
-	public static function get_query() {
+	public static function get_query( $args = array() ) {
 		/* https://wordpress.org/support/topic/show-posts-from-other-languages/?replies=18
 		 * by way of
 		 * http://wordpress.syllogic.in/2014/08/going-multi-lingual-with-polylang/
@@ -33,10 +33,12 @@ class PolylangMultilingual {
 
 		$all_languages = '';
 
-		$args = array(
+		$defaults = array(
 			'lang' => $all_languages,
 			'post__not_in' => $duplicated_post_ids,
 		);
+
+		$args = array_merge( $defaults, $args );
 
 		return new WP_Query( $args );
 	}
