@@ -43,6 +43,29 @@ class PolylangMultilingual {
 		return new WP_Query( $args );
 	}
 
+	/**
+	 * A replacement for the WordPress function get_permalink()
+	 *
+	 * This will replace the language in a post URL so that a post can be viewed
+	 * in a language different to that of the rest of the interface.
+	 */
+	public static function get_permalink( $post ) {
+		$link = get_permalink( $post );
+
+		if ( self::is_polylang_installed() ) {
+			$post_language = pll_get_post_language( $post->ID );
+
+			if ( $post_language != self::$current_language ) {
+				$search = "/$post_language/";
+				$replace = '/' . self::$current_language . '/';
+
+				$link = str_replace( $search, $replace, $link );
+			}
+		}
+
+		return $link;
+	}
+
 	private static function get_duplicated_posts() {
 		$duplicate_ids = array();
 
