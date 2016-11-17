@@ -22,6 +22,12 @@ class PolylangMultilingual {
 			 * have article in one language and interface in another
 			 */
 			add_filter( 'pll_check_canonical_url', '__return_false' );
+
+			global $polylang;
+
+			remove_filter(
+				'option_sticky_posts',
+				array( $polylang->filters, 'option_sticky_posts' ) );
 		}
 	}
 
