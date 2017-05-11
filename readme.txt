@@ -10,16 +10,29 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-This plugin extends [polylang](https://wordpress.org/plugins/polylang/) to
-modify post queries, such that posts that have no translation in the currently
-selected language appear in results in their own language.
+This plugin, which requires [polylang](https://wordpress.org/plugins/polylang/)
+provides the means to include posts that have no translation in the current
+language on pages of posts.
+
+= Usage =
+
+Polylang Multilingual provides two public functions:
+
+`PolylangMultilingual::get_query()` returns a `WP_Query` object with posts from
+all languages but where there is a translated post, only the post in the current
+language will be included
+
+`PolylangMultilingual::get_permalink()` can be used as a drop-in replacement to
+`get_permalink()`. This will replace the language in a post URL so that a post
+can be viewed in a language different to that of the rest of the interface.
+
+[Follow this project on Github](https://github.com/aptivate/polylang-multilingual)
 
 
 == Installation ==
 
 1. Upload the plugin to the `/wp-content/plugins/` directory.
 2. Activate it through the **Plugins** menu in WordPress.
-
 
 == Changelog ==
 
