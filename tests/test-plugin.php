@@ -65,6 +65,34 @@ class PluginTest extends WP_UnitTestCase {
 		$this->assertThat( $excluded_ids, $this->equalTo( $duplicates ) );
 	}
 
+	function test_get_permalink_replaces_language() {
+		register_taxonomy( 'post_translations', array( 'post' ), array() );
+
+		$posts = $this->get_new_translated_posts( array( 'en', 'fr' ) );
+
+		$english_post = get_post( $posts['en'] );
+		$french_post = get_post( $posts['fr'] );
+
+		global $mock_post_link;
+		$mock_post_link = 'http://africaledspartnership.org/en/2017/05/02/test-post';
+		$french_link = 'http://africaledspartnership.org/fr/2017/05/02/test-post';
+
+		global $mock_post_language;
+		$mock_post_language = 'en';
+
+		add_filter( 'post_link', array( $this, 'post_link' ), 20, 2 );
+
+		$permalink = PolylangMultilingual::get_permalink( $english_post );
+		$this->assertThat( $permalink, $this->equalTo( $french_link ) );
+	}
+
+	public function post_link()
+	{
+		global $mock_post_link;
+
+		return $mock_post_link;
+	}
+
 	private function get_new_translated_posts( $languages )
 	{
 		$posts = array();
