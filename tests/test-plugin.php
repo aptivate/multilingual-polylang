@@ -37,6 +37,16 @@ class PluginTest extends WP_UnitTestCase {
 		$this->assertThat( $query->query['lang'], $this->equalTo( '' ) );
 	}
 
+	function test_get_query_preserves_defaults() {
+		register_taxonomy( 'post_translations', array( 'post' ), array() );
+
+		$query = PolylangMultilingual::get_query( array(
+			'post_type' => 'resource',
+		) );
+
+		$this->assertThat( $query->query['post_type'], $this->equalTo( 'resource' ) );
+	}
+
 	function test_get_query_filters_duplicates() {
 		register_taxonomy( 'post_translations', array( 'post' ), array() );
 
