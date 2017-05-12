@@ -5,6 +5,9 @@
  * @package Polylang_Multilingual/
  */
 
+require_once dirname( __FILE__ ) . '/post-translations-factory.php';
+
+
 /**
  * Plugin test case.
  */
@@ -32,5 +35,41 @@ class PluginTest extends WP_UnitTestCase {
 		$query = PolylangMultilingual::get_query();
 
 		$this->assertThat( $query->query['lang'], $this->equalTo( '' ) );
+	}
+
+	function test_get_query_filters_duplicates() {
+		register_taxonomy( 'post_translations', array( 'post' ), array() );
+
+		$both1 = $this->get_new_translated_posts( array( 'en', 'fr' ) );
+		$both2 = $this->get_new_translated_posts( array( 'en', 'fr' ) );
+		$both3 = $this->get_new_translated_posts( array( 'en', 'fr' ) );
+
+		// The current languages is French so we shouldn't see English
+		$duplicates = array( $both1['en'], $both2['en'], $both3['en'] );
+		asort( $duplicates );
+
+		$query = PolylangMultilingual::get_query();
+		$excluded_ids = $query->query['post__not_in'];
+		asort( $excluded_ids );
+
+		$this->assertThat( $excluded_ids, $this->equalTo( $duplicates ) );
+	}
+
+	private function get_new_translated_posts( $languages )
+	{
+		$posts = array();
+
+		foreach ( $languages as $language ) {
+			$post = $this->factory->post->create();
+			$translations[ $language ] = $post;
+			$posts[ $language ] = $post;
+		}
+
+		$factory = new PostTranslationsFactory();
+		$term = $factory->create( array( 'description' => serialize( $translations ) ) );
+
+		wp_set_post_terms( $posts[ $languages[0] ], array( $term ), 'post_translations' );
+
+		return $posts;
 	}
 }
