@@ -17,6 +17,8 @@ require_once $_tests_dir . '/includes/functions.php';
  * Manually load the plugin being tested.
  */
 function _manually_load_plugin() {
+	require_once dirname( __FILE__ ) . '/mock-polylang.php';
+
 	require dirname( dirname( __FILE__ ) ) . '/polylang-multilingual.php';
 }
 

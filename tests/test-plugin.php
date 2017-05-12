@@ -1,20 +1,21 @@
 <?php
 /**
- * Class SampleTest
+ * Class PluginTest
  *
  * @package Polylang_Multilingual/
  */
 
-/**
- * Sample test case.
- */
-class SampleTest extends WP_UnitTestCase {
 
-	/**
-	 * A single example test.
-	 */
-	function test_sample() {
-		// Replace this with some actual testing code.
-		$this->assertTrue( true );
+/**
+ * Plugin test case.
+ */
+class PluginTest extends WP_UnitTestCase {
+
+	function test_check_canonical_url_returns_false() {
+		$url = 'http://example.com/foo/fr';
+
+		$url = apply_filters( 'pll_check_canonical_url', $url, 'fr' );
+
+		$this->assertThat( $url, $this->identicalTo( false ) );
 	}
 }
