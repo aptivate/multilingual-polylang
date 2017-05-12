@@ -12,7 +12,7 @@ function pll_current_language() {
 
 class PLL_Frontend_Filters {
 	function option_sticky_posts( $posts ) {
-		return $posts;
+		return 'default sticky posts';
 	}
 }
 

@@ -18,4 +18,12 @@ class PluginTest extends WP_UnitTestCase {
 
 		$this->assertThat( $url, $this->identicalTo( false ) );
 	}
+
+	function test_sticky_posts_filter_removed() {
+		$original_posts = array( 1, 2, 3 );
+
+		$posts = apply_filters( 'option_sticky_posts', $original_posts );
+
+		$this->assertThat( $posts, $this->equalTo( $original_posts ) );
+	}
 }
