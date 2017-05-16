@@ -2,7 +2,7 @@
 /**
  * Class PluginTest
  *
- * @package Polylang_Multilingual/
+ * @package Multilingual_Polylang/
  */
 
 require_once dirname( __FILE__ ) . '/post-translations-factory.php';

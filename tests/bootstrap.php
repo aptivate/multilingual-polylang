@@ -2,7 +2,7 @@
 /**
  * PHPUnit bootstrap file
  *
- * @package Polylang_Multilingual/
+ * @package Multilingual_Polylang/
  */
 
 $_tests_dir = getenv( 'WP_TESTS_DIR' );
