@@ -1,4 +1,4 @@
-=== Polylang Multilingual ===
+=== Multilingual Polylang ===
 Contributors: Aptivate
 Tags: polylang, multilingual, bilingual, translate, translation, language, multilanguage, international, localization
 Requires at least: 4.0
@@ -16,7 +16,7 @@ language on pages of posts.
 
 = Usage =
 
-Polylang Multilingual provides two public functions:
+Multilingual Polylang provides two public functions:
 
 `MultilingualPolylang::get_query()` returns a `WP_Query` object with posts from
 all languages but where there is a translated post, only the post in the current
@@ -26,7 +26,7 @@ language will be included
 `get_permalink()`. This will replace the language in a post URL so that a post
 can be viewed in a language different to that of the rest of the interface.
 
-[Follow this project on Github](https://github.com/aptivate/polylang-multilingual)
+[Follow this project on Github](https://github.com/aptivate/multilingual-polylang)
 
 
 == Installation ==
