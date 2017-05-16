@@ -18,11 +18,11 @@ language on pages of posts.
 
 Polylang Multilingual provides two public functions:
 
-`PolylangMultilingual::get_query()` returns a `WP_Query` object with posts from
+`MultilingualPolylang::get_query()` returns a `WP_Query` object with posts from
 all languages but where there is a translated post, only the post in the current
 language will be included
 
-`PolylangMultilingual::get_permalink()` can be used as a drop-in replacement to
+`MultilingualPolylang::get_permalink()` can be used as a drop-in replacement to
 `get_permalink()`. This will replace the language in a post URL so that a post
 can be viewed in a language different to that of the rest of the interface.
 

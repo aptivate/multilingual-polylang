@@ -6,7 +6,7 @@
   Author: Aptivate
 */
 
-class PolylangMultilingual {
+class MultilingualPolylang {
 	private static $current_language;
 	private static $other_languages;
 
@@ -99,4 +99,4 @@ class PolylangMultilingual {
 	}
 }
 
-add_action( 'plugins_loaded', array( 'PolylangMultilingual', 'init' ) );
+add_action( 'plugins_loaded', array( 'MultilingualPolylang', 'init' ) );

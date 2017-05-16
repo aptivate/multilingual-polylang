@@ -32,7 +32,7 @@ class PluginTest extends WP_UnitTestCase {
 	function test_get_query_returns_posts_in_all_languages() {
 		register_taxonomy( 'post_translations', array( 'post' ), array() );
 
-		$query = PolylangMultilingual::get_query();
+		$query = MultilingualPolylang::get_query();
 
 		$this->assertThat( $query->query['lang'], $this->equalTo( '' ) );
 	}
@@ -40,7 +40,7 @@ class PluginTest extends WP_UnitTestCase {
 	function test_get_query_preserves_defaults() {
 		register_taxonomy( 'post_translations', array( 'post' ), array() );
 
-		$query = PolylangMultilingual::get_query( array(
+		$query = MultilingualPolylang::get_query( array(
 			'post_type' => 'resource',
 		) );
 
@@ -58,7 +58,7 @@ class PluginTest extends WP_UnitTestCase {
 		$duplicates = array( $both1['en'], $both2['en'], $both3['en'] );
 		asort( $duplicates );
 
-		$query = PolylangMultilingual::get_query();
+		$query = MultilingualPolylang::get_query();
 		$excluded_ids = $query->query['post__not_in'];
 		asort( $excluded_ids );
 
@@ -82,7 +82,7 @@ class PluginTest extends WP_UnitTestCase {
 
 		add_filter( 'post_link', array( $this, 'post_link' ), 20, 2 );
 
-		$permalink = PolylangMultilingual::get_permalink( $english_post );
+		$permalink = MultilingualPolylang::get_permalink( $english_post );
 		$this->assertThat( $permalink, $this->equalTo( $french_link ) );
 	}
 
