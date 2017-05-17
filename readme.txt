@@ -18,15 +18,15 @@ language on pages of posts.
 
 Multilingual Polylang provides two public functions:
 
-`MultilingualPolylang::get_query()` returns a `WP_Query` object with posts from
+The function `MultilingualPolylang::get_query()` returns a `WP_Query` object with posts from
 all languages but where there is a translated post, only the post in the current
 language will be included
 
-`MultilingualPolylang::get_permalink()` can be used as a drop-in replacement to
+The function `MultilingualPolylang::get_permalink()` can be used as a drop-in replacement to
 `get_permalink()`. This will replace the language in a post URL so that a post
 can be viewed in a language different to that of the rest of the interface.
 
-[Follow this project on Github](https://github.com/aptivate/multilingual-polylang)
+[Follow this project on GitHub](https://github.com/aptivate/multilingual-polylang)
 
 
 == Installation ==
@@ -49,29 +49,32 @@ can be viewed in a language different to that of the rest of the interface.
 
 This plugin uses [wp-cli](http://wp-cli.org/) and [PHPUnit](https://phpunit.de/) for testing.
 
-* Grab the latest source from github:
+= Download the source code from GitHub =
 
-`
-$ git clone git@github.com:aptivate/multilingual-polylang.git
-`
+`$ git clone git@github.com:aptivate/multilingual-polylang.git`
 
-* Install [wp-cli](http://wp-cli.org/#install)
-* Install [PHPUnit](https://phpunit.de/)
+= Install wp-cli =
 
-* Install the test WordPress environment:
+If not already present, install [wp-cli](http://wp-cli.org/#install)
 
-`
-cd multilingual-polylang
-bash bin/install-wp-tests.sh test_db_name db_user 'db_password' db_host version
-`
+= Install PHPUnit =
+
+If not already present, install [PHPUnit](https://phpunit.de/)
+
+= Install the test WordPress environment =
+
+`$ cd multilingual-polylang`
+`$ bash bin/install-wp-tests.sh test_db_name db_user 'db_password' db_host version`
 
 where:
 
-    `test_db_name` is the name for your **temporary** test WordPress database
-    `db_user` is the database user name
-    `db_password` is the password
-    `db_host` is the database host (eg `localhost`)
-    `version` is the version of WordPress (eg `4.7.5` or `latest`)
+* &nbsp;`test_db_name` is the name of your **temporary** test WordPress database
+* &nbsp;`db_user` is the database user name
+* &nbsp;`db_password` is the password
+* &nbsp;`db_host` is the database host (eg `localhost`)
+* &nbsp;`version` is the version of WordPress (eg `4.7.5` or `latest`)
 
-* Run the tests
-`phpunit`
+= Run the tests =
+From the plugin directory:
+
+`$ phpunit`
