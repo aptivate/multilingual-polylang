@@ -29,16 +29,28 @@ class MultilingualPolylang
 
             global $polylang;
 
-            remove_filter(
-                'option_sticky_posts',
-                array( $polylang->filters, 'option_sticky_posts' ));
+            remove_filter('option_sticky_posts', array( $polylang->filters, 'option_sticky_posts' ));
         }
     }
+
+    /**
+     * Check if polylang is installed and active
+     *
+     * @version 1.0.0
+     * @return  bool
+     */
 
     private static function is_polylang_installed()
     {
         return function_exists('pll_languages_list');
     }
+
+    /**
+     * Creates a new query for all posts avabile in any language
+     *
+     * @version 1.0.3
+     * @return  WP_Query
+     */
 
     public static function get_query($args = array())
     {
@@ -65,6 +77,9 @@ class MultilingualPolylang
      *
      * This will replace the language in a post URL so that a post can be viewed
      * in a language different to that of the rest of the interface.
+     *
+     * @version 1.0.0
+     * @return  string A url to the current language
      */
     public static function get_permalink($post)
     {
@@ -81,8 +96,15 @@ class MultilingualPolylang
             }
         }
 
-        return $link;
+        return (string) $link;
     }
+
+    /**
+     * Get dubplicates of posts
+     *
+     * @version 1.0.0
+     * @return  array
+     */
 
     private static function get_duplicated_posts()
     {
@@ -99,12 +121,19 @@ class MultilingualPolylang
             }
         }
 
-        return $duplicate_ids;
+        return (array) $duplicate_ids;
     }
+
+    /**
+     * Check if post exists in current languge
+     *
+     * @version 1.0.3
+     * @return  bool
+     */
 
     private static function is_in_current_language($trans_post)
     {
-        return $trans_post[ self::$current_language ] != 0;
+        return (bool) $trans_post[ self::$current_language ] != 0;
     }
 }
 
