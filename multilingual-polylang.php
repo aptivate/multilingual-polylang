@@ -108,4 +108,4 @@ class MultilingualPolylang
     }
 }
 
-add_action('plugins_loaded', array( 'MultilingualPolylang', 'init' ));
+add_action('plugins_loaded', array( 'MultilingualPolylang\MultilingualPolylang', 'init' ));
