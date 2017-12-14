@@ -98,7 +98,7 @@ class MultilingualPolylang
     }
 
     /**
-     * Get dubplicates of posts
+     * Get duplicates of posts
      *
      * @version 1.0.0
      * @return  array
