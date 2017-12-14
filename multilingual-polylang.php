@@ -2,7 +2,7 @@
 /*
   Plugin Name: Multilingual Polylang
   Description: Display posts in all languages
-  Version: 1.0.1
+  Version: 1.0.2
   Author: Aptivate
 */
 

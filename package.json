@@ -1,0 +1,19 @@
+{
+  "name": "multilingual-polylang",
+  "version": "1.0.2",
+  "description": "WordPress extension to polylang plugin to allow posts to be displayed in multiple languages",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/helsingborg-stad/multilingual-polylang.git"
+  },
+  "author": "Sebastian Thulin",
+  "license": "GNU",
+  "bugs": {
+    "url": "https://github.com/aptivate/multilingual-polylang/issues"
+  },
+  "homepage": "https://github.com/aptivate/multilingual-polylang"
+}
