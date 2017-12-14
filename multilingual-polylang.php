@@ -6,8 +6,6 @@
   Author: Aptivate, Helsingborg Stad
 */
 
-namespace MultilingualPolylang;
-
 class MultilingualPolylang
 {
     private static $current_language;
@@ -137,4 +135,4 @@ class MultilingualPolylang
     }
 }
 
-add_action('plugins_loaded', array( 'MultilingualPolylang\MultilingualPolylang', 'init' ));
+add_action('plugins_loaded', array( 'MultilingualPolylang', 'init' ));
