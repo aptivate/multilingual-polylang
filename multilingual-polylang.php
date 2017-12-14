@@ -3,8 +3,10 @@
   Plugin Name: Multilingual Polylang
   Description: Display posts in all languages
   Version: 1.0.2
-  Author: Aptivate
+  Author: Aptivate, Helsingborg Stad
 */
+
+namespace MultilingualPolylang;
 
 class MultilingualPolylang
 {
