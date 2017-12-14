@@ -36,6 +36,9 @@ can be viewed in a language different to that of the rest of the interface.
 
 == Changelog ==
 
+= 1.0.2 =
+* Added package.sjon & composer.json files to describe this project
+
 = 1.0.1 =
 * Documentation changes only
 

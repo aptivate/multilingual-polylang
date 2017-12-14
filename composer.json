@@ -1,0 +1,17 @@
+{
+    "name": "helsingborg-stad/multilingual-polylang",
+    "description": "WordPress extension to polylang plugin to allow posts to be displayed in multiple languages",
+    "type": "wordpress-plugin",
+    "license": "GNU",
+    "authors": [
+        {
+            "name": "Martin Burchell",
+            "email": "unknown@unknown.dev"
+        },
+        {
+            "name": "Sebastian Thulin",
+            "email": "sebastian.thulin@helsingborg.se"
+        }
+    ],
+    "require": {}
+}
