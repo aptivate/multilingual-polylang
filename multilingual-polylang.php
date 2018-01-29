@@ -67,10 +67,16 @@ class MultilingualPolylang {
 			$post_language = pll_get_post_language( $post->ID );
 
 			if ( $post_language != self::$current_language ) {
-				$search = "/$post_language/";
-				$replace = '/' . self::$current_language . '/';
-
-				$link = str_replace( $search, $replace, $link );
+				global $polylang;
+				
+				if( $polylang->options['hide_default'] ) {
+					$add = '/' . self::$current_language;
+					$link = self::rebuild_url( $link, $add );
+				} else {
+					$search = "/$post_language/";
+					$replace = '/' . self::$current_language . '/';
+					$link = str_replace( $search, $replace, $link );
+				}
 			}
 		}
 
@@ -96,6 +102,22 @@ class MultilingualPolylang {
 
 	private static function is_in_current_language( $trans_post ) {
 		return $trans_post[ self::$current_language ] != 0;
+	}
+	
+	private static function rebuild_url( $url, $add ) {
+		$parsed_url = parse_url($url);
+
+		$scheme   = isset($parsed_url['scheme']) ? $parsed_url['scheme'] . '://' : '';
+		$host     = isset($parsed_url['host']) ? $parsed_url['host'] : '';
+		$port     = isset($parsed_url['port']) ? ':' . $parsed_url['port'] : '';
+		$user     = isset($parsed_url['user']) ? $parsed_url['user'] : '';
+		$pass     = isset($parsed_url['pass']) ? ':' . $parsed_url['pass']  : '';
+		$pass     = ($user || $pass) ? "$pass@" : '';
+		$path     = isset($parsed_url['path']) ? $parsed_url['path'] : '';
+		$query    = isset($parsed_url['query']) ? '?' . $parsed_url['query'] : '';
+		$fragment = isset($parsed_url['fragment']) ? '#' . $parsed_url['fragment'] : '';
+
+		return $scheme . $user . $pass . $host . $port . $add . $path . $query . $fragment; 
 	}
 }
 
