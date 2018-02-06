@@ -44,7 +44,7 @@ class MultilingualPolylang {
 
 		$all_languages = '';
 
-		$main_query = $GLOBALS['wp_query']->query;
+		$main_query = $wp_query->query;
 		$main_query['lang'] = $all_languages;
 		$main_query['post__not_in'] = $duplicated_post_ids;
 
