@@ -47,7 +47,7 @@ class MultilingualPolylang {
 		$defaults = array(
 			'lang' => $all_languages,
 			'post__not_in' => $duplicated_post_ids,
-			'paged' => get_query_var( 'paged' ) ? get_query_var( 'paged' ) : 1
+			'paged' => get_query_var( 'paged', 1 )
 		);
 
 		$args = array_merge( $defaults, $args );
