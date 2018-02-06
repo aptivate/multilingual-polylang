@@ -44,12 +44,11 @@ class MultilingualPolylang {
 
 		$all_languages = '';
 
-		$defaults = array(
-			'lang' => $all_languages,
-			'post__not_in' => $duplicated_post_ids,
-		);
+		$main_query = $GLOBALS['wp_query']->query;
+		$main_query['lang'] = $all_languages;
+		$main_query['post__not_in'] = $duplicated_post_ids;
 
-		$args = array_merge( $defaults, $args );
+		$args = array_merge( $main_query, $args );
 
 		return new WP_Query( $args );
 	}
