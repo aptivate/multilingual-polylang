@@ -55,8 +55,12 @@ class MultilingualPolylang {
 		$merge_args['post__not_in'] = $duplicated_post_ids;
 
 		// Handle tax_query ([taxonomy] => language) arguments
-		$needle = self::getIndex('taxonomy', 'language', $merge_args['tax_query']);
-		unset($merge_args['tax_query'][$needle]);
+		if(isset($merge_args['tax_query'])) {
+			$needle = self::getIndex( 'taxonomy', 'language', $merge_args['tax_query'] );
+			if ( $needle !== null ) {
+				unset( $merge_args['tax_query'][ $needle ] );
+			}
+		}
 
 		// Give the possibility to overwrite the $args
 		$args = array_merge( $merge_args, $args );
