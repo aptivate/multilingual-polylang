@@ -40,15 +40,26 @@ class MultilingualPolylang {
 		 * by way of
 		 * http://wordpress.syllogic.in/2014/08/going-multi-lingual-with-polylang/
 		 */
+		
+		global $wp_query;
+		
 		$duplicated_post_ids = self::get_duplicated_posts();
 
 		$all_languages = '';
 
-		$main_query = $wp_query->query;
-		$main_query['lang'] = $all_languages;
-		$main_query['post__not_in'] = $duplicated_post_ids;
+		// Merge all original query vars with query to support CPT, Taxonomies, etc.
+		$merge_args = array_merge($wp_query->query, $wp_query->query_vars);
 
-		$args = array_merge( $main_query, $args );
+		// Overwrite specific language args
+		$merge_args['lang'] = $all_languages;
+		$merge_args['post__not_in'] = $duplicated_post_ids;
+
+		// Handle tax_query ([taxonomy] => language) arguments
+		$needle = self::getIndex('taxonomy', 'language', $merge_args['tax_query']);
+		unset($merge_args['tax_query'][$needle]);
+
+		// Give the possibility to overwrite the $args
+		$args = array_merge( $merge_args, $args );
 
 		return new WP_Query( $args );
 	}
@@ -95,6 +106,14 @@ class MultilingualPolylang {
 
 	private static function is_in_current_language( $trans_post ) {
 		return $trans_post[ self::$current_language ] != 0;
+	}
+	
+	private static function getIndex($needle, $name, $array) {
+		foreach($array as $key => $value){
+			if(is_array($value) && $value[$needle] == $name)
+				return $key;
+		}
+		return null;
 	}
 }
 
